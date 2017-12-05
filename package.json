@@ -3,6 +3,10 @@
   "version": "0.0.0-development",
   "description": "JWT verification for loopback",
   "main": "lib/index.js",
+  "files":[
+    "lib",
+    "src"
+  ],
   "scripts": {
     "lint": "eslint src",
     "test": "ava",
