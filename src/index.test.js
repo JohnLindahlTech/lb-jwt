@@ -1,11 +1,11 @@
 import test from 'ava';
+import jwt from 'jsonwebtoken';
 import {
   verifyJWT,
   attachUser,
   requestHandler,
   tokenExtractor,
 } from './index';
-import jwt from 'jsonwebtoken';
 
 const user = {
   name: 'John Doe',
@@ -22,11 +22,11 @@ test('verifyJWT should return the payload', async (t) => {
 
 test('attachUser should be able to attach a user', (t) => {
   const req = {};
-  attachUser(req, user)
-  t.deepEqual(req, { user })
+  attachUser(req, user);
+  t.deepEqual(req, { user });
 });
 
-test('tokenExtractor should be able to get the jwt token from bearer', t => {
+test('tokenExtractor should be able to get the jwt token from bearer', (t) => {
   const req = {
     headers: {
       authorization: 'Bearer token',
@@ -36,10 +36,10 @@ test('tokenExtractor should be able to get the jwt token from bearer', t => {
   t.is(tokenExtractor(req), 'token');
 });
 
-test('tokenExtractor should be able to get the jwt token from url query param', t => {
+test('tokenExtractor should be able to get the jwt token from url query param', (t) => {
   const req = {
     headers: {},
-    url: '/not/used?access_token=token'
+    url: '/not/used?access_token=token',
   };
   t.is(tokenExtractor(req), 'token');
 });
@@ -50,7 +50,7 @@ test('requestHandler should be able to create a user property', async (t) => {
   const req = {
     headers: {
       authorization: `Bearer ${token}`,
-    }
+    },
   };
   const res = {};
   await requestHandler(req, res, { secret });
@@ -58,7 +58,6 @@ test('requestHandler should be able to create a user property', async (t) => {
 });
 
 test('requestHandler should do nothing if jwt is missing.', async (t) => {
-  const token = jwt.sign(user, secret);
   const req = {
     headers: {
     },
