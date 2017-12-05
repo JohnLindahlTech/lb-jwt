@@ -1,0 +1,52 @@
+{
+  "name": "lb-jwt",
+  "version": "0.0.0-development",
+  "description": "JWT verification for loopback",
+  "main": "lib/index.js",
+  "scripts": {
+    "lint": "eslint src",
+    "test": "ava",
+    "build": "babel src -d lib --ignore test.js",
+    "watch": "npm run build -- -w",
+    "start": "DEBUG=* node ./lib/index.js",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+  },
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "targets": {
+            "node": "8.9.1"
+          }
+        }
+      ]
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JohnPhoto/lb-jwt.git"
+  },
+  "keywords": [
+    "loopback",
+    "jwt"
+  ],
+  "author": "JohnPhoto <john@johnphoto.se>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JohnPhoto/lb-jwt/issues"
+  },
+  "homepage": "https://github.com/JohnPhoto/lb-jwt#readme",
+  "devDependencies": {
+    "ava": "^0.24.0",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "eslint": "^4.12.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "semantic-release": "^8.2.0"
+  },
+  "dependencies": {
+    "debug": "^3.1.0"
+  }
+}
